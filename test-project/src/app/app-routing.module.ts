@@ -9,6 +9,14 @@ const routes: Routes = [
   {
     path: 'settings',
     loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
+  },
+  {
+    path: 'gallery',
+    loadChildren: () => import('./gallery/gallery.module').then( m => m.GalleryPageModule)
+  },
+  {
+    path: 'image-viewer',
+    loadChildren: () => import('./image-viewer/image-viewer.module').then( m => m.ImageViewerPageModule)
   }
 ];
 @NgModule({

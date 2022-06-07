@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>GridGallery</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row size="6">
+      <ion-col size="3" *ngFor="let photo of photos">
+        <ion-img [src]="photo.webviewPath" (click)="imageClick(photo)"></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
