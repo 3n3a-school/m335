@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Camera, CameraResultType } from '@capacitor/camera';
 
 @Component({
   selector: 'app-settings',
@@ -7,15 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsPage implements OnInit {
 
+  imageUrl: String;
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  testDebuggeR() {
-    console.log("test");
+  async takePicture() {
+      const image = await Camera.getPhoto({
+        quality: 90,
+        allowEditing: true,
+        resultType: CameraResultType.Uri
+      });
     
-    debugger;
+      this.imageUrl = image.webPath;
   }
 
 }
