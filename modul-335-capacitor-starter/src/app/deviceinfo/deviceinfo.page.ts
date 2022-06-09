@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Device } from "@capacitor/device";
+
+interface DeviceInfo {
+
+}
 
 @Component({
   selector: 'app-deviceinfo',
@@ -7,9 +12,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeviceinfoPage implements OnInit {
 
+  info: DeviceInfo;
+
   constructor() { }
 
-  ngOnInit() {
+  async ngOnInit() {
+  }
+
+  private getInfo(): DeviceInfo {
+    {
+      
+    }
   }
 
 }
