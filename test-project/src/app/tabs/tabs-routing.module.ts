@@ -16,6 +16,10 @@ const routes: Routes = [
         loadChildren: () => import('../settings/settings.module').then(m=>m.SettingsPageModule)
       },
       {
+        path: 'nick-name',
+        loadChildren: () => import('../nick-name/nick-name.module').then( m => m.NickNamePageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/gallery',
         pathMatch: 'full'

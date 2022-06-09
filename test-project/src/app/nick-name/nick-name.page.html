@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>NickName</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row class="custom-row">
+    <ion-button (click)="presentAlertPrompt()">New Nickname</ion-button>
+  </ion-row>
+  <ion-row class="custom-row" *ngIf="activeNick">
+    <ion-text>
+      <h2>I like to be called <ion-text color="warning">{{ activeNick.name }}</ion-text></h2>
+    </ion-text>
+  </ion-row>
+  <ion-row class="custom-row">
+    <ion-button color="dark" class="big-daddy-button">
+      <p>Press me <br>daddy 👉👈</p>
+    </ion-button>
+  </ion-row>
+  <ion-list>
+    <ion-item *ngFor="let nick of nicknames">
+      <ion-title>{{ nick.name }}</ion-title>
+    </ion-item>
+  </ion-list>
+</ion-content>

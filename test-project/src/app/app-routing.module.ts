@@ -17,7 +17,7 @@ const routes: Routes = [
   {
     path: 'image-viewer',
     loadChildren: () => import('./image-viewer/image-viewer.module').then( m => m.ImageViewerPageModule)
-  }
+  },
 ];
 @NgModule({
   imports: [
