@@ -3,7 +3,7 @@
   <access origin="*" />
   
   <feature name="LocalNotification">
-    <param name="ios-package" value="APPLocalNotification"/>
+    <param name="android-package" value="de.appplant.cordova.plugin.localnotification.LocalNotification"/>
   </feature>
 
   
