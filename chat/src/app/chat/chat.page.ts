@@ -108,6 +108,28 @@ export class ChatPage implements OnInit {
     }
   }
 
+  async deleteAllMessages() {
+    const alert = await this.alertController.create({
+      header: 'Delete all messages in this room.',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          id: 'cancel-button',
+        }, {
+          text: 'Okay',
+          id: 'confirm-button',
+          handler: (e) => {
+            this.chatListRef.remove()
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
   sendMessage() {
     this.message = this.messageInput.value;
     

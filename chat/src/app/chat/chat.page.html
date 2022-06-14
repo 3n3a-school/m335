@@ -32,6 +32,10 @@
   
 
   <div class="chat-field">
+    <ion-button (click)="deleteAllMessages()" *ngIf="isGodMode" expand="block" color="danger">
+      <ion-icon name="trash"></ion-icon>
+      Delete All
+    </ion-button>
     <form [formGroup]="chatForm" (ngSubmit)="sendMessage()">
       <ion-grid>
         <ion-row>
