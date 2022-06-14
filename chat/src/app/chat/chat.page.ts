@@ -50,6 +50,7 @@ export class ChatPage implements OnInit {
       message: new FormControl('', [Validators.required])
     })
     this.scrollToBottom()
+    
   }
 
   ngAfterViewChecked() {

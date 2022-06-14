@@ -83,15 +83,15 @@ ion-content {
     left: 0;
 
     .chat-input {
-        ion-input {
-            height: 100%;
-            width: 100%;
+        display: flex;
+        justify-content: stretch;
 
-            padding: .2em !important;
-            background: lightseagreen;
-            border-radius: 6px;
-        }        
+        ion-input {
+            padding: .2em .3em !important;
+            border: 1px solid white;
+        }
     }
+
 
     .chat-send {
         display: flex;
