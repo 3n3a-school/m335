@@ -62,4 +62,22 @@ export class AuthService {
       this.router.navigate(['login'])
     })
   }
+
+  sendNewPassword() {
+    return this.afAuth.sendPasswordResetEmail(
+      this.userData.email,
+      {
+        url: `${location.origin}/?email=${this.userData.email}`,
+        iOS: {
+          bundleId: 'com.example.ios'
+        },
+        android: {
+          packageName: 'com.example.android',
+          installApp: true,
+          minimumVersion: '12'
+        },
+        handleCodeInApp: true
+      }
+    )
+  }
 }

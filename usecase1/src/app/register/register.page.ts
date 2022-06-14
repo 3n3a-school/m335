@@ -21,7 +21,30 @@ export class RegisterPage implements OnInit {
         Validators.email]),
       password: new FormControl('', [Validators.required,
         Validators.minLength(8)]),
-    });
+      passwordRepeat: new FormControl('', [Validators.required])
+    },
+    
+    RegisterPage.mustMatch('password', 'passwordRepeat')
+    );
+  }
+  
+  static mustMatch(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+      const control = formGroup.controls[controlName];
+      const matchingControl = formGroup.controls[matchingControlName];
+
+      if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+        return;
+      }
+
+      // set error on matchingControl if validation fails
+      if (control.value !== matchingControl.value) {
+        matchingControl.setErrors({ mustMatch: true });
+      } else {
+        matchingControl.setErrors(null);
+      }
+      return null;
+    };
   }
 
   sendRegisterForm() {
