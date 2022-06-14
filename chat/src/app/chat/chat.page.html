@@ -3,15 +3,19 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>chat</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="showRoomChoice();">
+        <ion-icon name="people"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>chat <span *ngIf="groupNumber$ | async" [innerText]="groupNumber$ | async"></span></ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div #scrollMe class="chat-content" (swipe)="swipeEvent($event)">
     <ion-list>
-      <ion-item *ngFor="let chat of chatList | async">
-        <div class="messages" [class.other]="chat.username === this.currentUser">
+        <div *ngFor="let chat of chatList | async"class="messages" [class.other]="chat.username === this.currentUser">
             <div class="message">
                 <span>
                     <h3 *ngIf="chat.username" >{{chat.username}} </h3>                                                    
@@ -23,7 +27,6 @@
                 <div class="time" *ngIf="showDates">{{chat.date}}</div>
             </div>
         </div>
-      </ion-item>
     </ion-list>
   </div>
   

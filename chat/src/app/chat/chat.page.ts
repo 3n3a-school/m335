@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, BehaviorSubject, Subject } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
+import {AlertController} from '@ionic/angular'
 
 interface Chat {
   username: String;
@@ -29,20 +30,22 @@ export class ChatPage implements OnInit {
   chatList: Observable<Chat[]>;
   chatListRef: AngularFireList<Chat>;
 
-  groupNumber = "G6";
+  groupNumber$ = new Subject<string>();
   currentUser = "Enea";
 
-  constructor(private afDb: AngularFireDatabase) {
-    this.chatListRef = this.afDb.list('/chats/' + this.groupNumber);
-    // this.chatList = this.chatListRef.valueChanges();
-    this.chatList = this.chatListRef.snapshotChanges().pipe(
-      map(changes => 
-        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-      )
-    );
+  constructor(private afDb: AngularFireDatabase, private alertController: AlertController) {
+    this.groupNumber$.subscribe(gn => {
+      this.chatListRef = this.afDb.list('/chats/' + gn);
+      this.chatList = this.chatListRef.snapshotChanges().pipe(
+        map(changes => 
+          changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+        )
+      );
+    })
   }
   
   async ngOnInit() {
+    this.groupNumber$.next("G6")
     this.chatForm = new FormGroup({
       message: new FormControl('', [Validators.required])
     })
@@ -51,6 +54,37 @@ export class ChatPage implements OnInit {
 
   ngAfterViewChecked() {
     this.scrollToBottom()
+  }
+
+  async showRoomChoice() {
+    const alert = await this.alertController.create({
+      header: 'Enter a Room Number',
+      inputs: [
+        {
+          name: 'room',
+          type: 'text',
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          id: 'cancel-button',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Okay',
+          id: 'confirm-button',
+          handler: (e) => {
+            this.groupNumber$.next(e.room)
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   scrollToBottom(): void {

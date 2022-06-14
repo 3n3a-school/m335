@@ -68,6 +68,7 @@ ion-content {
         -moz-transform: translate3d(0, 0, 0) !important;
         transform: translate3d(0, 0, 0) !important;
         text-align: right !important;
+        align-self: flex-end;
     }
     span {
         color: var(--ion-color-light) !important;
