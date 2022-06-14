@@ -5,17 +5,18 @@ import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  templateUrl: './register.page.html',
+  styleUrls: ['./register.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class RegisterPage implements OnInit {
 
-  loginForm: FormGroup; 
+  registerForm: FormGroup; 
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.loginForm = new FormGroup({
+    this.registerForm = new FormGroup({
+      displayname: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required,
         Validators.email]),
       password: new FormControl('', [Validators.required,
@@ -23,9 +24,9 @@ export class LoginPage implements OnInit {
     });
   }
 
-  sendLoginForm() {
-    let result = this.loginForm.value
-    this.authService.loginUser({...result})
+  sendRegisterForm() {
+    let result = this.registerForm.value
+    this.authService.createUser({...result})
   }
 
 }
