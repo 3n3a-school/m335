@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { Subject } from 'rxjs';
 import { AuthService } from './_services/auth.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { AuthService } from './_services/auth.service';
 })
 export class AppComponent {
 
-    email: string;
+    email = new Subject<string>();
     public appPages = [
         { title: 'News', path: '/news', icon: 'newspaper'},
         { title: 'Chat', path: '/chat', icon: 'chatbubbles'}
@@ -20,8 +21,13 @@ export class AppComponent {
 
     initializeApp() {
         this.platform.ready().then(async () => {
-            this.email = (await this.authService.currentUser).email
         });
+        
+        this.authService.currentUser.subscribe((user) =>  {
+            if (user) {
+                this.email.next(user.email)
+            }
+        })
     }
 
     async doLogout() {

@@ -44,7 +44,7 @@ export class AuthService {
     }
 
     get currentUser() {
-        return this.afAuth.currentUser;
+        return this.afAuth.authState;
     }
 
     async showSuccessToast(message) {
