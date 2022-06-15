@@ -1,7 +1,32 @@
 <ion-header>
-    <ion-toolbar> </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="gotoNewsPage()">
+                <ion-icon name="chevron-back"></ion-icon>
+                Back
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-no-padding">
-    <!-- TODO: Card + Fab -->
+    <ion-card>
+        <img src="{{ newsdetail.imgurl }}">
+        <ion-card-header>
+            <ion-card-subtitle>
+                {{ newsdetail.date }}
+            </ion-card-subtitle>
+            <ion-card-title>
+                {{ newsdetail.titel }}
+            </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            {{ newsdetail.description }}
+        </ion-card-content>
+    </ion-card>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="doShare(newsdetail)">
+          <ion-icon name="share"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
 </ion-content>

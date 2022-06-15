@@ -1,5 +1,5 @@
-<ion-header>
-    <ion-toolbar>
+<ion-header collapse="fade" [translucent]="true">
+    <ion-toolbar color="grey" >
         <ion-buttons slot="start"><ion-menu-button></ion-menu-button></ion-buttons>
         <ion-title>News</ion-title>
     </ion-toolbar>
@@ -7,6 +7,14 @@
 
 <ion-content>
     <ion-list>
-        <!-- TODO: News-Elemente in einer Schlaufe anzeigen, siehe Ionic Doku für richtigen Style -->
+        <ion-item *ngFor="let item of newsList | async" (click)="openDetailNews(item)">
+            <ion-avatar>
+                <img src="{{ item.imgurl }}">
+            </ion-avatar>
+            <ion-label>
+                <h2>{{ item.titel }}</h2>
+                <p>{{ item.slug }}</p>
+            </ion-label>
+        </ion-item>
     </ion-list>
 </ion-content>

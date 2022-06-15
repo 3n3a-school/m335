@@ -7,6 +7,8 @@ import { AuthService } from './_services/auth.service';
     templateUrl: 'app.component.html',
 })
 export class AppComponent {
+
+    email: string;
     public appPages = [
         { title: 'News', path: '/news', icon: 'newspaper'},
         { title: 'Chat', path: '/chat', icon: 'chatbubbles'}
@@ -17,7 +19,9 @@ export class AppComponent {
     }
 
     initializeApp() {
-        this.platform.ready().then(() => {});
+        this.platform.ready().then(async () => {
+            this.email = (await this.authService.currentUser).email
+        });
     }
 
     async doLogout() {

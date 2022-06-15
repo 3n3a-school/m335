@@ -8,6 +8,7 @@ import { ToastController } from '@ionic/angular';
     providedIn: 'root',
 })
 export class AuthService {
+
     constructor(
         private afAuth: AngularFireAuth,
         private router: Router,
@@ -40,6 +41,10 @@ export class AuthService {
         } catch (e) {
             await this.showErrorToast(e, 'Registration')
         }
+    }
+
+    get currentUser() {
+        return this.afAuth.currentUser;
     }
 
     async showSuccessToast(message) {
