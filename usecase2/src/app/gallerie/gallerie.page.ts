@@ -11,15 +11,19 @@ import { Gallerie } from "../_types/gallerie";
 })
 export class GalleriePage implements OnInit {
 
-  groupNumber: string =  'G0'; // Bsp. G1
+  groupNumber: string =  'G6'; // Bsp. G1
 
+  galleryRef: AngularFireList<Gallerie[]>
+  galleryList: Observable<Gallerie[][]>
 
   constructor(public alertCtrl: AlertController,afDb: AngularFireDatabase) {
-   //TODO: Gallerie holen und zuweisen
+    this.galleryRef = afDb.list(`/gallerie/${this.groupNumber}`)
+    this.galleryList = this.galleryRef.valueChanges()
   }
 
 
   ngOnInit() {
+    
   }
 
 }

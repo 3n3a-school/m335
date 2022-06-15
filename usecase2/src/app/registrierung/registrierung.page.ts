@@ -25,7 +25,7 @@ export class RegistrierungPage implements OnInit {
 
   async register (user: User) {
     if (this.wasSomethingEntered()) {
-      await this.authService.createUserWithEmailAndPassword(user, '/')
+      await this.authService.createUserWithEmailAndPassword(user, 'ferienorte')
     } else {
       let errToast = await this.toastCtrl.create({
         message: `Please enter your name, email and password`,

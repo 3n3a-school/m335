@@ -6,5 +6,11 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-    <ion-img src="" width="100%"></ion-img>
+  <ion-grid>
+    <ion-row size="1">
+      <ion-col size="3" *ngFor="let img of galleryList | async">
+        <ion-img src="{{ img.imgurl }}" width="100%"></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

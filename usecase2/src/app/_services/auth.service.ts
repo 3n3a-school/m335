@@ -13,9 +13,10 @@ export class AuthService {
 
   async loginWithEmailAndPassword (user: User, redirectToURL?: string) {
     try {
-      await this.afAuth.signInWithEmailAndPassword(user.email, user.password).then((_) => {
-        this.router.navigateByUrl(redirectToURL)
-      })
+      await this.afAuth.signInWithEmailAndPassword(user.email, user.password)
+      if (!await this.router.navigate([redirectToURL])) {
+        await this.router.navigate(['gallerie'])
+      }
     }
     catch(e) {
       console.error(`[Sign in]: ${e.code}: ${e.message}`)
@@ -30,11 +31,13 @@ export class AuthService {
 
   async createUserWithEmailAndPassword (user: User, redirectToURL?: string) {
     try {
-      await this.afAuth.createUserWithEmailAndPassword(user.email, user.password).then((res) => {
+      this.afAuth.createUserWithEmailAndPassword(user.email, user.password).then(async (res) => {
         res.user.updateProfile({
           displayName: user.displayname
         })
-        this.router.navigateByUrl(redirectToURL)
+        if (!await this.router.navigate([redirectToURL])) {
+          await this.router.navigate(['gallerie'])
+        }
       })
     }
     catch(e) {
@@ -53,8 +56,8 @@ export class AuthService {
   }
   
   async logout() {
-    // TODO: do logout stuff    
-    this.router.navigate(['login'])
+    await this.afAuth.signOut()
+    await this.router.navigate(['login'])
     let toast = await this.toastCtrl.create({
       message: "You have been logged out.",
       duration: 2000

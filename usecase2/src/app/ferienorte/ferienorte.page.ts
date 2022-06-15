@@ -11,17 +11,48 @@ import { Ferienort } from "../_types/ferienort";
 })
 export class FerienortePage implements OnInit {
 
-  groupNumber: string =  'G0'; // Bsp. G1
+  groupNumber: string =  'G6'; // Bsp. G1
 
+  holidayRef: AngularFireList<Ferienort[]>
+  holidayList: Observable<Ferienort[][]>
 
-  constructor(public alertCtrl: AlertController,afDb: AngularFireDatabase) {
-   //TODO: Ferienorte von Firebase holen und zuweisen
+  constructor(public alertCtrl: AlertController, 
+    afDb: AngularFireDatabase) {
+    this.holidayRef = afDb.list(`/ferienorte/${this.groupNumber}`)
+    this.holidayList = this.holidayRef.valueChanges()
   }
 
   ngOnInit() {
   }
 
-  addFerienort() {
-    //TODO: Ferienort mit AlertCtrl hinzufügen
+  async addFerienort() {
+    let addDialog = await this.alertCtrl.create({
+      cssClass: 'popup',
+      header: 'Add new Ferienort',
+      inputs: [
+        {
+          name: 'name',
+          type: 'text',
+          placeholder: 'The name...'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Ok',
+          handler: (res) => {
+            
+          }
+        }
+      ]
+    });
+
+    await addDialog.present();
   }
 }

@@ -10,8 +10,8 @@ import { AuthService } from './_services/auth.service';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Galerie', url: '/galerie', icon: 'images' },
-    { title: 'Ferienorte', url: '/ferienorte', icon: 'airplane' },
+    { title: 'Galerie', url: '/gallerie', icon: 'images', color: 'danger' },
+    { title: 'Ferienorte', url: '/ferienorte', icon: 'airplane', color: 'primary' },
   ];
 
   constructor(

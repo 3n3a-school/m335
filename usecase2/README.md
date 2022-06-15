@@ -11,7 +11,7 @@ M335: Musterlösung Übung UseCase2 (Tag5)
 ## Navigation
 
 * ~~Das Menu soll die im Prototyp ersichtlichen Menüpunkte (Galerie, Ferienorte) haben~~
-* Die Menüpunkte sollen die im Prototyp ersichtlichen I~~cons~~ und Farben haben
+* ~~Die Menüpunkte sollen die im Prototyp ersichtlichen Icons und Farben haben~~
 * ~~Der Titel im Menu soll "Use Case 2" stehen~~
 * ~~Am unteren Ende des Menus soll ein Button fürs Logout ersichtlich sein~~
 * ~~Klickt ein Benutzer Logout, wird er ausgeloggt und zum Login gesendet, verwende hier den `auth.service.ts`~~
@@ -34,17 +34,17 @@ M335: Musterlösung Übung UseCase2 (Tag5)
 
 * ~~Die Registration soll `auth.service.ts `verwenden~~
 * ~~Die Registration soll mit Benutzername / Email / Passwort und Firebase Auth realisiert werden, alle Daten sollen gespeichert werden~~
-* Bei einem Klick auf den Registrieren-Button wird überprüft ob etwas eingegeben wurde, nur dann wird ein Registration versucht
+* ~~Bei einem Klick auf den Registrieren-Button wird überprüft ob etwas eingegeben wurde, nur dann wird ein Registration versucht~~
 * ~~Oberhalb des Registrierungs-Buttons gibt es einen Button "Zurück zum Login" mit entsprechender Aktion~~
 * ~~Gibt es ein Fehler beim Login, soll dieser mittels `ToastController`  angezeigt werden~~
 
 ## Galerie
 
-* Die Galerie-Seite ist nach dem Login die Standardseite
-* Die Galerie zeigt Bilder der Firebase Realtime Database an
-* Die jeweilige Gruppennummer ist einzuhalten (Bsp. `groupNumber: string = "G1"; `)
-* Die Bild-URL soll dabei von der Firebase Realtime Database geladen werden
-* Die Bilder sollen in einem Grid dargestellt werden
+* ~~Die Galerie-Seite ist nach dem Login die Standardseite~~
+* ~~Die Galerie zeigt Bilder der Firebase Realtime Database an~~
+* ~~Die jeweilige Gruppennummer ist einzuhalten (Bsp. `groupNumber: string = "G1"; `)~~
+* ~~Die Bild-URL soll dabei von der Firebase Realtime Database geladen werden~~
+* ~~Die Bilder sollen in einem Grid dargestellt werden~~
 
 ## Ferienorte
 
