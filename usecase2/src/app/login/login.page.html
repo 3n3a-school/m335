@@ -20,11 +20,11 @@
     </ion-row>
     <ion-row class="actionButtons">
         <ion-col size="12">
-            <ion-button expand="full">ACCOUNT ERSTELLEN</ion-button>
+            <ion-button expand="full" (click)="gotoRegistrierung()">ACCOUNT ERSTELLEN</ion-button>
 
         </ion-col>
         <ion-col size="12">
-            <ion-button expand="full">LOGIN</ion-button>
+            <ion-button expand="full" (click)="doLogin(user)">LOGIN</ion-button>
         </ion-col>
     </ion-row>
 </ion-grid> 

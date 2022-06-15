@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, AlertController } from '@ionic/angular';
+import { NavController, AlertController, ToastController } from '@ionic/angular';
 import { User } from '../_types/user';
 import { Router } from '@angular/router';
+import { StorageService } from '../_services/storage.service';
+import { AuthService } from '../_services/auth.service';
+
 
 @Component({
   selector: 'app-login',
@@ -13,19 +16,39 @@ export class LoginPage implements OnInit {
   user = {} as User;
 
   constructor(
-    private alertCtrl: AlertController,
-    private router: Router
+    private toastCtrl: ToastController,
+    private router: Router,
+    private storageService: StorageService,
+    private authService: AuthService
   ) {
 
   }
-  ngOnInit() {
-   // TODO: Evt. Willkommensseite darstellen
+  async ngOnInit() {
+    let welcomeDone = await this.storageService.get('WelcomeDone');
+    if (!welcomeDone) {
+      await this.router.navigate(['willkommen'])
+    }
   }
   async doLogin (user: User) {
-   // TODO: Login
+    if (this.wasSomethingEntered()) {
+      await this.authService.loginWithEmailAndPassword(user, '/')
+    } else {
+      let errToast = await this.toastCtrl.create({
+        message: `Please enter your email and password`,
+        duration: 3000,
+        color: 'danger'
+      })
+      errToast.present()
+    }
+  }
+  
+  wasSomethingEntered() {
+    if (this.user.email != undefined && this.user.password != undefined)
+      return true
+    return false
   }
 
-  gotoRegistrierung () {
-   // TODO: Navigation zu Registrierung
+  async gotoRegistrierung () {
+    await this.router.navigate(['registrierung'])
   }
 }

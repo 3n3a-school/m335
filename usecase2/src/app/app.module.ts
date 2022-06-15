@@ -21,9 +21,9 @@ import { AngularFireDatabaseModule } from "@angular/fire/compat/database";
 import { AngularFirestoreModule } from "@angular/fire/compat/firestore";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { AngularFireAuthGuard } from "@angular/fire/compat/auth-guard";
-// TODO: Firebase Einstellungen von environments laden
+import { environment } from "src/environments/environment";
 
-// TODO: Guard für Willkommensseite importieren & zu providers hinzufügen
+import { WillkommenGuard } from "src/app/_guards/willkommen.guard"
 
 @NgModule({
   declarations: [AppComponent, LogoutComponent],
@@ -33,12 +33,15 @@ import { AngularFireAuthGuard } from "@angular/fire/compat/auth-guard";
     IonicModule.forRoot(),
     IonicStorageModule.forRoot(),
     AppRoutingModule,
-    // TODO: Firebase-Imports hinzufügen
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AngularFireAuthGuard,
-    // TODO: Willkommens-Guard hinzufügen
+    WillkommenGuard
   ],
   bootstrap: [AppComponent],
 })

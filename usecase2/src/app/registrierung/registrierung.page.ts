@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 import { User } from '../_types/user';
 import {Router} from '@angular/router';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-registrierung',
@@ -14,7 +15,8 @@ export class RegistrierungPage implements OnInit {
 
   constructor(private router: Router,
     private alertCtrl: AlertController,
-    private toast: ToastController
+    private toastCtrl: ToastController,
+    private authService: AuthService
    ) {
   }
 
@@ -22,10 +24,25 @@ export class RegistrierungPage implements OnInit {
   }
 
   async register (user: User) {
-    //TODO: Registrierung
+    if (this.wasSomethingEntered()) {
+      await this.authService.createUserWithEmailAndPassword(user, '/')
+    } else {
+      let errToast = await this.toastCtrl.create({
+        message: `Please enter your name, email and password`,
+        duration: 3000,
+        color: 'danger'
+      })
+      errToast.present()
+    }
   }
 
-  goBackToLogin() {
-   //TODO: Navigation zu Login
+  wasSomethingEntered() {
+    if (this.user.email != undefined && this.user.password != undefined)
+      return true
+    return false
+  }
+
+  async backToLogin() {
+    await this.router.navigate(['login'])
   }
 }

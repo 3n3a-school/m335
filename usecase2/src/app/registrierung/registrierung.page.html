@@ -25,11 +25,11 @@
     </ion-row>
     <ion-row class="actionButtons">
         <ion-col size="12">
-            <ion-button expand="full">ZURÜCK ZUM LOGIN</ion-button>
+            <ion-button expand="full" (click)="backToLogin()">ZURÜCK ZUM LOGIN</ion-button>
 
         </ion-col>
         <ion-col size="12">
-            <ion-button expand="full">REGISTRIEREN</ion-button>
+            <ion-button expand="full" (click)="register(user)">REGISTRIEREN</ion-button>
         </ion-col>
     </ion-row>
 </ion-grid>

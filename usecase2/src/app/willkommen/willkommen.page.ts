@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { StorageService } from '../_services/storage.service';
 
 @Component({
   selector: 'app-willkommen',
@@ -7,13 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WillkommenPage implements OnInit {
 
-  constructor() { }
+  constructor(private storageService: StorageService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  welcomeDone() {
-    //TODO: Willkommensseite ab jetzt nicht mehr anzeigen (@ionic/storage verwenden ;-))
+  continueToLogin() {
+    this.welcomeDone()
+    this.router.navigate(['login'])
+  }
+
+  async welcomeDone() {
+    await this.storageService.set('WelcomeDone', true);
   }
 
 }
