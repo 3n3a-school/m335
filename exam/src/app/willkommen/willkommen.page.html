@@ -1,13 +1,17 @@
 <ion-content class="ion-no-padding">
     <swiper [pagination]="true" class="full-height">
         <ng-template swiperSlide>
-            <h1>Willkommen</h1>
+            <div class="first">
+                <h1>Willkommen</h1>
+            </div>
         </ng-template>
         <ng-template swiperSlide>
-            <h1>zur</h1>
+            <div class="second">
+                <h1>zur</h1>
+            </div>
         </ng-template>
         <ng-template swiperSlide>
-            <div class="third-container">
+            <div class="third third-container">
                 <h1>finalen App!</h1>
                 <ion-button fill="outline" (click)="continueToLogin()">
                     Zum Login
