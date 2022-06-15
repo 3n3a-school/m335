@@ -1,8 +1,3 @@
-<<ion-header>
-    <ion-toolbar>
-        <ion-title>Login</ion-title>
-    </ion-toolbar>
-</ion-header>
 <ion-content class="ion-no-padding ion-text-center">
     <ion-grid fixed>
         <ion-row>
@@ -15,26 +10,26 @@
             <ion-col size="12">
                 <ion-item>
                     <ion-label position="stacked">Email</ion-label>
-                    <ion-input type="text"></ion-input>
+                    <ion-input type="text" [(ngModel)]="user.email" (keyup)="onChange()"></ion-input>
                 </ion-item>
             </ion-col>
             <ion-col size="12">
                 <ion-item>
                     <ion-label position="stacked">Passwort</ion-label>
-                    <ion-input type="password"></ion-input>
+                    <ion-input type="password" [(ngModel)]="user.password" (keyup)="onChange()" ></ion-input>
                 </ion-item>
             </ion-col>
             <ion-col size="12">
-                <ion-button expand="block" [disabled]="loginButtonDisabled">
+                <ion-button expand="block" [disabled]="loginButtonDisabled" (click)="doLogin()">
                     Login
                 </ion-button>
             </ion-col>
         </ion-row>
         <ion-row>
             <ion-col size="12">
-                <ion-button expand="block" fill="outline" color="medium">
+                <ion-button expand="block" fill="outline" color="medium" (click)="gotoRegister()">
                     Registrieren
-                    <ion-icon slot="end" name="arrow-round-forward"> </ion-icon>
+                    <ion-icon slot="end" name="arrow-forward"> </ion-icon>
                 </ion-button>
             </ion-col>
         </ion-row>

@@ -1,20 +1,16 @@
-ion-slide {
-    display: block;
-}
-ion-slides {
+swiper {
     height: 100%;
-    h1 {
-        padding-top: 200px;
-        padding-bottom: 50px;
+    .third-container {
+        display: flex !important;
+        flex-direction: column !important;
     }
-}
-
-.first {
-    background-color: #cccccc; /* TODO: Farbe anpassen -> Wie im Prototyp */
-}
-.second {
-    background-color: #cccccc; /* TODO: Farbe anpassen -> Wie im Prototyp */
-}
-.third {
-    background-color: #cccccc; /* TODO: Farbe anpassen -> Wie im Prototyp */
+    ion-slide:nth-child(1) {
+        background-color: red !important;
+    }
+    ion-slide:nth-child(2) {
+        background-color: yellow !important;
+    }
+    ion-slide:nth-child(3) {
+        background-color: green !important;
+    }
 }
